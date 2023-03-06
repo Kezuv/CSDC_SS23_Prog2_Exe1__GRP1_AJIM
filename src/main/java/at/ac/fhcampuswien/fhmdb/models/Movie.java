@@ -30,11 +30,13 @@ public class Movie {
         return genres;
     }
 
-    public String getGenresToString(){
+
+
+    public static String getGenresToString(List<Genre> genres){
 
         String genresTotal = "";
 
-        for (int g = 0 ; g < this.genres.size() ; g ++){
+        for (int g = 0 ; g < genres.size() ; g ++){
             if (genres.get(g) == genres.get(genres.size()-1)){
                 genresTotal = genresTotal + genres.get(g).getKindOfGenre();
             } else {
@@ -47,9 +49,15 @@ public class Movie {
     public static List<Movie> initializeMovies(){
         List<Movie> movies = new ArrayList<>();
 
+        // Movie The Wahle
         List<String> genres = new ArrayList<>();
         genres.add("DRAMA"); genres.add("HORROR");
         movies.add(new Movie("THe Wahle", "A balde wüdsau", genres ));
+
+        List<String> genreAvengers = new ArrayList<>();
+        genreAvengers.add("ACTION"); genreAvengers.add("DRAMA"); genreAvengers.add("FANTASY");
+        Movie avengersEndgame = new Movie("Avengers Endgame", "Last Marvel Movie of phase four", genreAvengers);
+        movies.add(avengersEndgame);
 
         return movies;
     }
