@@ -3,7 +3,7 @@ package at.ac.fhcampuswien.fhmdb.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+public class Movie implements Comparable<Movie>{
     private String title;
     private String description;
     // TODO add more properties here
@@ -60,5 +60,9 @@ public class Movie {
         movies.add(avengersEndgame);
 
         return movies;
+    }
+    @Override
+    public int compareTo(Movie o) {
+        return String.CASE_INSENSITIVE_ORDER.compare(this.title, o.getTitle());
     }
 }
