@@ -55,9 +55,18 @@ public class HomeController implements Initializable {
         // either set event handlers in the fxml file (onAction) or add them here
         searchBtn.setOnAction(actionEvent -> {
             observableMovies.clear();
+
             List<Movie> filteredMovies = new ArrayList<>();
-            filteredMovies.addAll(filterByGenre(allMovies, (String) genreComboBox.getValue()));
-            observableMovies.addAll(filterByString(filteredMovies, searchField.getText()));
+
+            for (int m = 0; m < allMovies.size(); m ++){
+                if (filterByGenre(allMovies.get(m), (String) genreComboBox.getValue())){
+                    if (filterByString(allMovies.get(m), searchField.getText())){
+                        filteredMovies.add(allMovies.get(m));
+                    }
+                }
+            }
+
+            observableMovies.addAll(filteredMovies);
         });
 
         // Sort button example:
@@ -73,38 +82,33 @@ public class HomeController implements Initializable {
 
     }
 
-    public List<Movie> filterByGenre(List<Movie> allMovies, String genreToFilter){
+    public boolean filterByGenre(Movie toCheck, String genreToFilter){
 
-        List<Movie> filteredList = new ArrayList<>();
             if (genreToFilter == null || genreToFilter == ""){
-                return allMovies;
+                return true;
             }
 
-            for (int i = 0; i < allMovies.size(); i++){
-                    if (Movie.getGenresToString(allMovies.get(i).getGenres()).contains(genreToFilter)){
-                        filteredList.add(allMovies.get(i));
-                    }
-                }
-            return filteredList;
+            if (Movie.getGenresToString(toCheck.getGenres()).contains(genreToFilter)){
+                        return true;
+            }
+        return false;
     }
 
-    public List<Movie> filterByString(List<Movie> filteredByGenre, String stringToFilter){
-        List<Movie> filteredList = new ArrayList<>();
+    public boolean filterByString(Movie toCheck, String stringToFilter){
 
         stringToFilter.toLowerCase();
 
         if (stringToFilter == ""){
-            return filteredByGenre;
+            return true;
         }
 
 
-        for (int i = 0; i < filteredByGenre.size(); i ++){
-                if (filteredByGenre.get(i).getTitle().toLowerCase().contains(stringToFilter) ||
-                    filteredByGenre.get(i).getDescription().toLowerCase().contains(stringToFilter)){
-                    filteredList.add(filteredByGenre.get(i));
-                }
+        if (toCheck.getTitle().toLowerCase().contains(stringToFilter) ||
+                toCheck.getDescription().toLowerCase().contains(stringToFilter)){
+                    return true;
         }
 
-        return filteredList;
+
+        return false;
     }
 }
