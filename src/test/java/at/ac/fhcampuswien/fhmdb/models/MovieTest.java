@@ -46,7 +46,39 @@ class MovieTest {
         String testGenreText = Movie.getGenresToString(genres);
         assertEquals("ACTION",testGenreText);
     }
+    /*
+    @Test
+    void movieListObject_genreCheck(){
+        List<Genre> genres = new ArrayList<>();
+        genres = Movie.get
+        assertNotEquals(null , Movie.getGenres());
 
+    }
+
+    @Test
+    void movieListObject_descriptionCheck(){
+
+    }
+
+    @Test
+    void movieListObject_titleCheck(){
+
+    }
+
+    @Test
+    void movieListObject_genreCheck(){
+
+    }
+
+
+
+    @Test
+    void filterByGenre() {
+        List<Movie> inputList = new ArrayList<>();
+
+
+    }
+    */
 
     @Test
     void initializeMovies() {
