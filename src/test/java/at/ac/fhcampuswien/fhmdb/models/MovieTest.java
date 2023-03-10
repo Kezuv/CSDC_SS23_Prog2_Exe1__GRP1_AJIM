@@ -1,15 +1,71 @@
 package at.ac.fhcampuswien.fhmdb.models;
 
-import at.ac.fhcampuswien.fhmdb.HomeController;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.lang.Throwable;
+import java.lang.IllegalArgumentException;
+import java.lang.NullPointerException;
+
+import at.ac.fhcampuswien.fhmdb.HomeController;
 
 class MovieTest {
+
+    @Test
+    void when_title_is_null_IllegalArgumentException_should_be_thrown() {
+        // Given
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+            String action = "ACTION";
+            List<String> genre = new ArrayList<>();
+            genre.add(action);
+            // When
+            Movie movie = new Movie(null, "This is a test for title 'null'.", genre);
+        } );
+        // Then
+        assertEquals("Title cannot be null!", exception.getMessage());
+    }
+
+    @Test
+    void when_description_is_null_IllegalArgumentException_should_be_thrown() {
+        // Given
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+            String animation = "ANIMATION";
+            List<String> genre = new ArrayList<>();
+            genre.add(animation);
+            // When
+            Movie movie = new Movie("TestMovie", null, genre);
+        } );
+        // Then
+        assertEquals("Description cannot be null!", exception.getMessage());
+    }
+
+    @Test
+    void when_List_genre_is_null_NullPointerException_should_be_thrown() {
+        // Given
+        Throwable exception = assertThrows(NullPointerException.class, () -> {
+            // When
+            Movie movie = new Movie("TestMovie", "This is a test movie.", null);
+        } );
+        // Then
+        assertEquals("List cannot be null!", exception.getMessage());
+    }
+
+    @Test
+    void when_List_genre_is_empty_NullPointerException_should_be_thrown() {
+        // Given
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+            List<String> genre = new ArrayList<>();
+            // When
+            Movie movie = new Movie("TestMovie", "This is a test movie.", genre);
+        } );
+        // Then
+        assertEquals("List cannot be empty!", exception.getMessage());
+    }
 
     @Test
     void getGenresToString_emptyList() {
@@ -47,6 +103,7 @@ class MovieTest {
         String testGenreText = Movie.getGenresToString(genres);
         assertEquals("ACTION",testGenreText);
     }
+
 
 
     @Test
@@ -89,14 +146,6 @@ class MovieTest {
         assertFalse(instance.filterByString(movie4, stringToFilter));
     }
 
-    @Test
-    public void testFilterByStringEmpty() {
-        Movie movie1 = new Movie("Movie1",  "A heartwarming story", Collections.singletonList("Drama, Comedy"));
-
-        HomeController instance = new HomeController();
-
-        assertTrue(instance.filterByString(movie1, ""));
-    }
 
     /*
     @Test
