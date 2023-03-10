@@ -89,7 +89,7 @@ public class HomeController implements Initializable {
             }
 
             if (Movie.getGenresToString(toCheck.getGenres()).contains(genreToFilter)){
-                        return true;
+                return true;
             }
         return false;
     }
