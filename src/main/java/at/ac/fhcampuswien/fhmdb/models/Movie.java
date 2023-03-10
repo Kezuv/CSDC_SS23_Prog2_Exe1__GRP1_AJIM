@@ -28,13 +28,17 @@ public class Movie implements Comparable<Movie>{
             throw new IllegalArgumentException("Description cannot be null!");
         }
 
-        if (genre.isEmpty() || genre != null) {
-            for (int i = 0; i < genre.size(); i ++){
-                this.genres.add(new Genre(genre.get(i)));
-            }
-        } else {
-            throw new NullPointerException("List cannot be null or empty!");
+        try {
+            if (!genre.isEmpty()) {
+                for (int i = 0; i < genre.size(); i++) {
+                    this.genres.add(new Genre(genre.get(i)));
+                }
+            } else throw new IllegalArgumentException("List cannot be empty!");
+
+        } catch (NullPointerException n){
+            throw new NullPointerException("List cannot be null!");
         }
+
     }
 
     public String getTitle() {
