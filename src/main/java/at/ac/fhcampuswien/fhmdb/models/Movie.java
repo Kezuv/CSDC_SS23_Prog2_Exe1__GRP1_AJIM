@@ -4,6 +4,7 @@ import at.ac.fhcampuswien.fhmdb.utilities.DummyMovieListGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.IllegalArgumentException;
 
 public class Movie implements Comparable<Movie>{
     private String title;
@@ -13,10 +14,26 @@ public class Movie implements Comparable<Movie>{
 
 
     public Movie(String title, String description, List<String> genre) {
-        this.title = title;
-        this.description = description;
-        for (int i = 0; i < genre.size(); i ++){
-            this.genres.add(new Genre(genre.get(i)));
+        if (title != null) {
+            this.title = title;
+
+        } else {
+            throw new IllegalArgumentException("Title cannot be null!");
+        }
+
+        if (description != null) {
+            this.description = description;
+
+        } else {
+            throw new IllegalArgumentException("Description cannot be null!");
+        }
+
+        if (genre.isEmpty() || genre != null) {
+            for (int i = 0; i < genre.size(); i ++){
+                this.genres.add(new Genre(genre.get(i)));
+            }
+        } else {
+            throw new NullPointerException("List cannot be null or empty!");
         }
     }
 
