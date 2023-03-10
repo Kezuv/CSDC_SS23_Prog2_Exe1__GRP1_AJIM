@@ -1,12 +1,13 @@
 package at.ac.fhcampuswien.fhmdb.models;
 
+import at.ac.fhcampuswien.fhmdb.HomeController;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MovieTest {
 
@@ -46,15 +47,58 @@ class MovieTest {
         String testGenreText = Movie.getGenresToString(genres);
         assertEquals("ACTION",testGenreText);
     }
-    /*
-    @Test
-    void movieListObject_genreCheck(){
-        List<Genre> genres = new ArrayList<>();
-        genres = Movie.get
-        assertNotEquals(null , Movie.getGenres());
 
+
+    @Test
+    public void testFilterByGenre() {
+        Movie movie1 = new Movie("Movie1","", Collections.singletonList("Drama, Comedy"));
+        Movie movie2 = new Movie("Movie2", "", Collections.singletonList("Action, Thriller"));
+        Movie movie3 = new Movie("Movie3", "", Collections.singletonList("Comedy"));
+        Movie movie4 = new Movie("Movie4", "", Collections.singletonList("Action"));
+
+        String genreToFilter = "Comedy";
+        HomeController instance = new HomeController();
+        assertTrue(instance.filterByGenre(movie1, genreToFilter));
+        assertFalse(instance.filterByGenre(movie2, genreToFilter));
+        assertTrue(instance.filterByGenre(movie3, genreToFilter));
+        assertFalse(instance.filterByGenre(movie4, genreToFilter));
     }
 
+    @Test
+    public void testFilterByGenreNull() {
+        Movie movie1 = new Movie("Movie1","", Collections.singletonList("Drama, Comedy"));
+
+        HomeController instance = new HomeController();
+
+        assertTrue(instance.filterByGenre(movie1, null));
+    }
+
+    @Test
+    public void testFilterByString() {
+        Movie movie1 = new Movie("Movie1",  "A heartwarming story", Collections.singletonList("Drama, Comedy"));
+        Movie movie2 = new Movie("Movie2", "An edge-of-your-seat adventure", Collections.singletonList("Action, Thriller"));
+        Movie movie3 = new Movie("Movie3", "A laugh-out-loud comedy", Collections.singletonList("Comedy"));
+        Movie movie4 = new Movie("Movie4", "An action-packed blockbuster", Collections.singletonList("Action"));
+
+        String stringToFilter = "heart";
+        HomeController instance = new HomeController();
+
+        assertTrue(instance.filterByString(movie1, stringToFilter));
+        assertFalse(instance.filterByString(movie2, stringToFilter));
+        assertFalse(instance.filterByString(movie3, stringToFilter));
+        assertFalse(instance.filterByString(movie4, stringToFilter));
+    }
+
+    @Test
+    public void testFilterByStringEmpty() {
+        Movie movie1 = new Movie("Movie1",  "A heartwarming story", Collections.singletonList("Drama, Comedy"));
+
+        HomeController instance = new HomeController();
+
+        assertTrue(instance.filterByString(movie1, ""));
+    }
+
+    /*
     @Test
     void movieListObject_descriptionCheck(){
 
