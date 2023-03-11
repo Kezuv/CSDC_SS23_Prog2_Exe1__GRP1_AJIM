@@ -25,7 +25,7 @@ public class Filters {
         return false;
     }
     public static String cleanString (String stringToFilter){
-        char[] arrayToClean = stringToFilter.toCharArray();
+        char[] arrayToClean = stringToFilter.toLowerCase().toCharArray();
         StringBuilder cleanString = new StringBuilder();
 
         for(char i : arrayToClean) {

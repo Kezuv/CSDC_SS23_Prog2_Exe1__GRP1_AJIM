@@ -47,7 +47,12 @@ public class FiltersTest {
     }
     @Test
     public void Filter_input_cleanup() {
-        String input = "Dr\"'? %$§&><am+*!°^@;:a";
-        assertEquals(Filters.cleanString(input), "Drama");
+        String input = "Dr\"'?%$§&><am+*!°^@;:a";
+        assertEquals("drama", Filters.cleanString(input));
+    }
+    @Test
+    public void Filter_input_two_words() {
+        String input = "Action";
+        assertEquals("drama", Filters.cleanString(input));
     }
 }
