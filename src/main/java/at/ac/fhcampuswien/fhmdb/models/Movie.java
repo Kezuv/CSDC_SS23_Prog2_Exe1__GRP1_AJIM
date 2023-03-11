@@ -14,25 +14,23 @@ public class Movie implements Comparable<Movie>{
 
     public Movie(String title, String description, List<String> genre) {
         try {
-        if (!title.equals("")) {
-            this.title = title;
-
-        } else {
-            throw new IllegalArgumentException("Title cannot be empty!");
-        }
-
-        if (!description.equals("")) {
-            this.description = description;
-
-        } else {
-            throw new IllegalArgumentException("Description cannot be empty!");
-        }
-            if (!genre.isEmpty()) {
-                for (int i = 0; i < genre.size(); i++) {
-                    this.genres.add(new Genre(genre.get(i)));
+            if (!title.equals("")) {
+                this.title = title;
+            } else {
+                throw new IllegalArgumentException("Title cannot be empty!");
+            }
+            if (!description.equals("")) {
+                this.description = description;
+            } else {
+                throw new IllegalArgumentException("Description cannot be empty!");
+            }
+                if (!genre.isEmpty()) {
+                    for (int i = 0; i < genre.size(); i++) {
+                        this.genres.add(new Genre(genre.get(i)));
+                    }
+                } else {
+                    throw new IllegalArgumentException("Genres cannot be empty!");
                 }
-            } else throw new IllegalArgumentException("Genres cannot be empty!");
-
         } catch (NullPointerException n){
             throw new NullPointerException("Title, description or genres cannot be null!");
         }

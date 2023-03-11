@@ -7,7 +7,7 @@ public class Genre {
     private String kindOfGenre;
 
     public Genre(String kindOfGenre) {
-        kindOfGenre.toUpperCase();
+        kindOfGenre = kindOfGenre.toUpperCase();
         this.kindOfGenre = kindOfGenre;
     }
 
