@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.fhmdb;
 
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import at.ac.fhcampuswien.fhmdb.ui.MovieCell;
+import at.ac.fhcampuswien.fhmdb.utilities.Filters;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
@@ -55,17 +56,14 @@ public class HomeController implements Initializable {
         // either set event handlers in the fxml file (onAction) or add them here
         searchBtn.setOnAction(actionEvent -> {
             observableMovies.clear();
-
             List<Movie> filteredMovies = new ArrayList<>();
-
             for (int m = 0; m < allMovies.size(); m ++){
-                if (filterByGenre(allMovies.get(m), (String) genreComboBox.getValue())){
-                    if (filterByString(allMovies.get(m), searchField.getText())){
+                if (Filters.filterByGenre(allMovies.get(m), (String) genreComboBox.getValue())){
+                    if (Filters.filterByString(allMovies.get(m), searchField.getText())){
                         filteredMovies.add(allMovies.get(m));
                     }
                 }
             }
-
             observableMovies.addAll(filteredMovies);
         });
 
@@ -82,33 +80,5 @@ public class HomeController implements Initializable {
 
     }
 
-    public boolean filterByGenre(Movie toCheck, String genreToFilter){
 
-            if (genreToFilter == null || genreToFilter == ""){
-                return true;
-            }
-
-            if (Movie.getGenresToString(toCheck.getGenres()).contains(genreToFilter)){
-                return true;
-            }
-        return false;
-    }
-
-    public boolean filterByString(Movie toCheck, String stringToFilter){
-
-        stringToFilter.toLowerCase();
-
-        if (stringToFilter == ""){
-            return true;
-        }
-
-
-        if (toCheck.getTitle().toLowerCase().contains(stringToFilter) ||
-                toCheck.getDescription().toLowerCase().contains(stringToFilter)){
-                    return true;
-        }
-
-
-        return false;
-    }
 }
