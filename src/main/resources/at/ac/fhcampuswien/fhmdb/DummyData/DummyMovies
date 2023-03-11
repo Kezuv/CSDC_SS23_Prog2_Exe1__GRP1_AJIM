@@ -32,13 +32,13 @@ CRIME
 A CLOCKWORK ORANGE
 In a dystopic future Britain, Beethoven-loving Alex heads the ‘Droogs’. A gang of proto-punks whose ultra-violent tendencies dictate their macabre nightly adventures in crime. When captured, Alex submits to equally torturous methods of psychological conditioning to earn back his freedom.
 DRAMA
-SCIENCE-FICTION
+SCIENCE_FICTION
 
 2001: A SPACE ODYSSEY
 A mysterious black monolith encountered by our prehistoric past leaps millennia and connects to a future of colonised space. Where astronaut Bowman is about to explore uncharted territory. A poetic meditation on technology and humanity adapted from a story by the revered Arthur C. Clarke.
 DRAMA
 THRILLER
-SCIENCE-FICTION
+SCIENCE_FICTION
 
 THE SHINING
 A brilliant adaptation of Stephen King’s novel about a frustrated writer forced to take the job as caretaker of a remote mountainside hotel for the winter with his young family in tow. An evil presence lurking within causes his mental disintegration into madness and murder.
@@ -49,7 +49,7 @@ ETERNAL SUNSHINE OF THE SPOTLESS MIND
 From the pen of Charlie Kaufman (Being John Malkovich) comes the story of a heartbroken man who decides to erase from his mind all the memories of his love, only to find that he wants to keep them after all.
 DRAMA
 ROMANCE
-SCIENCE-FICTION
+SCIENCE_FICTION
 
 DR. STRANGELOVE
 This is the saga of two psychotic generals: Joint Chief of Staff “Buck” Turgidson and Air Force Strategic Commander Jack Ripper, who orders a bomber squadron to attack the USSR, triggering a Soviet secret weapon, the “Doomsday Machine”, a diabolical retaliatory missile system.
@@ -195,7 +195,7 @@ STAR WARS: EPISODE III - REVENGE OF THE SITH
 As the Clone Wars continue, Obi-Wan is sent to eliminate the leader of the Separatist Army. With his mentor away, Anakin Skywalker begins forming a bond with Chancellor Palpatine and begins his descent into the dark side.
 ACTION
 FANTASY
-SCIENCE-FICTION
+SCIENCE_FICTION
 
 THE READER
 A young German boy and an older woman are drawn into a passionate but secretive affair. Years later, he uncovers the terrible secrets of her wartime past.
@@ -273,6 +273,43 @@ SPIDER-MAN 2
 As Peter Parker juggles his dual life as a regular college student and superhuman crime fighter, he must also contend with a new and multi-tentacled nemesis, Dr Octopus.
 ACTION
 ADVENTURE
-SCIENCE-FICTION
+SCIENCE_FICTION
+
+FINDING DORY
+Friendly but forgetful blue tang Dory begins a search for her long-lost parents and everyone learns a few things about the real meaning of family along the way.
+ANIMATION
+ADVENTURE
+COMEDY
+FAMILY
+
+WRECK-IT RALPH
+A video game villain wants to be a hero and sets out to fulfill his dream, but his quest brings havoc to the whole arcade where he lives.
+ANIMATION
+ADVENTURE
+FAMILY
+FANTASY
+SCIENCE_FICTION
+
+RUSH
+The merciless 1970s rivalry between Formula One rivals James Hunt and Niki Lauda.
+ACTION
+BIOGRAPHY
+DRAMA
+SPORT
+
+ROCKY
+A small-time Philadelphia boxer gets a supremely rare chance to fight the world heavyweight champion in a bout in which he strives to go the distance for his self-respect.
+DRAMA
+SPORT
+
+ROCKY IV
+Rocky Balboa proudly holds the world heavyweight boxing championship, but a new challenger has stepped forward: Drago, a six-foot-four, 261-pound fighter who has the backing of the Soviet Union.
+DRAMA
+SPORT
+
+ROCKY V
+Reluctantly retired from fighting, Rocky takes charge of Mickey's gym and agrees to train a young protégé who's hungry for success.
+DRAMA
+SPORT
 
 END

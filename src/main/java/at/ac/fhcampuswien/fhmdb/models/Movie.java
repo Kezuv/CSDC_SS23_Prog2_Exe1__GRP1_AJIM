@@ -9,34 +9,32 @@ import java.lang.IllegalArgumentException;
 public class Movie implements Comparable<Movie>{
     private String title;
     private String description;
-    // TODO add more properties here
     private List<Genre> genres = new ArrayList<>();
 
 
     public Movie(String title, String description, List<String> genre) {
-        if (title != null) {
+        try {
+        if (!title.equals("")) {
             this.title = title;
 
         } else {
-            throw new IllegalArgumentException("Title cannot be null!");
+            throw new IllegalArgumentException("Title cannot be empty!");
         }
 
-        if (description != null) {
+        if (!description.equals("")) {
             this.description = description;
 
         } else {
-            throw new IllegalArgumentException("Description cannot be null!");
+            throw new IllegalArgumentException("Description cannot be empty!");
         }
-
-        try {
             if (!genre.isEmpty()) {
                 for (int i = 0; i < genre.size(); i++) {
                     this.genres.add(new Genre(genre.get(i)));
                 }
-            } else throw new IllegalArgumentException("List cannot be empty!");
+            } else throw new IllegalArgumentException("Genres cannot be empty!");
 
         } catch (NullPointerException n){
-            throw new NullPointerException("List cannot be null!");
+            throw new NullPointerException("Title, description or genres cannot be null!");
         }
 
     }
@@ -70,18 +68,8 @@ public class Movie implements Comparable<Movie>{
     }
 
     public static List<Movie> initializeMovies(){
+
         List<Movie> movies = new ArrayList<>();
-
-        // Movie The Wahle
-        /*List<String> genres = new ArrayList<>();
-        genres.add("DRAMA"); genres.add("HORROR");
-        movies.add(new Movie("THe Wahle", "A balde wüdsau", genres ));
-
-        List<String> genreAvengers = new ArrayList<>();
-        genreAvengers.add("ACTION"); genreAvengers.add("DRAMA"); genreAvengers.add("FANTASY");
-        Movie avengersEndgame = new Movie("Avengers Endgame", "Last Marvel Movie of phase four", genreAvengers);
-        movies.add(avengersEndgame);*/
-
         movies.addAll(DummyMovieListGenerator.execute("src/main/resources/at/ac/fhcampuswien/fhmdb/DummyData/DummyMovies"));
 
         return movies;

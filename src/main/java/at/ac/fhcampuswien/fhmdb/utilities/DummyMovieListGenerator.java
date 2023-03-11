@@ -1,6 +1,5 @@
 package at.ac.fhcampuswien.fhmdb.utilities;
 
-import at.ac.fhcampuswien.fhmdb.models.Genre;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import java.io.BufferedReader;
 import java.io.FileReader;
