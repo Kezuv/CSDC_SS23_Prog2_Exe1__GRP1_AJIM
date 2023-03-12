@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.fhmdb.models;
 
 import at.ac.fhcampuswien.fhmdb.utilities.DummyMovieListGenerator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.IllegalArgumentException;
@@ -65,10 +66,11 @@ public class Movie implements Comparable<Movie>{
         return genresTotal;
     }
 
-    public static List<Movie> initializeMovies(){
+    public static List<Movie> initializeMovies() throws IOException {
 
         List<Movie> movies = new ArrayList<>();
-        movies.addAll(DummyMovieListGenerator.execute("src/main/resources/at/ac/fhcampuswien/fhmdb/DummyData/DummyMovies"));
+        DummyMovieListGenerator generator = new DummyMovieListGenerator("src/main/resources/at/ac/fhcampuswien/fhmdb/DummyData/DummyMovies");
+        movies.addAll(generator.getGeneratedMovieList());
 
         return movies;
     }

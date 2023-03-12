@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.fhmdb.utilities;
 
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,26 +10,86 @@ import java.util.List;
 
 public class DummyMovieListGenerator {
 
-    public static List<Movie> execute(String pathWithMovieData){
-        List<Movie> finishedList = new ArrayList<>();
+    private String pathWithMovieData;
+    private List<String> readData = new ArrayList<>();
 
-        List<String> readData = readFile(pathWithMovieData);
 
-        for (int m = 1; m < readData.size() ; ){
-            finishedList.add(generateMovie(readData));
-            lineRemover(readData);
-        }
-        return finishedList;
+
+    private List<Movie> generatedMovieList = new ArrayList<>();
+
+
+    public DummyMovieListGenerator(String pathWithMovieData) {
+            this.pathWithMovieData = pathWithMovieData;
     }
 
-    /**
-     * Read the text file and save every line in a list of strings until line "END"
-     * @param pathWithMovieData path of the text file
-     * @return List of String where each String is a line from text file (with line "END")
-     */
-    public static List<String> readFile(String pathWithMovieData) {
-        List<String> readData = new ArrayList<>();
+    public void execute() throws IOException {
+        readFile();
+        for (int m = 1; m < readData.size() ; ){
+            generateMovie();
+            lineRemover();
+        }
+    }
+
+    public boolean syntaxCheck() throws IOException {
+        if (checkForNull() && checkForEnd() && checkForData()){
+            return true;
+        } else return false;
+    }
+
+    public boolean checkForNull() throws FileNotFoundException {
+        FileReader fr = new FileReader(pathWithMovieData);
+        BufferedReader br = new BufferedReader(fr);
+
         try {
+            br.readLine().isEmpty();
+
+        } catch (NullPointerException n){
+            throw new NullPointerException("Source cannot be Null / Empty!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+    public boolean checkForEnd() throws IOException {
+        FileReader fr = new FileReader(pathWithMovieData);
+        BufferedReader br = new BufferedReader(fr);
+
+        try {
+            for (;;){
+                String readLines = br.readLine();
+
+                 if (readLines.equals("END")){
+                     return true;
+                    }
+            }
+        } catch (NullPointerException n){
+            throw new NullPointerException("ERROR - Source needs to contain \"END\"");
+        }
+    }
+
+
+
+    public boolean checkForData() throws IOException {
+        FileReader fr = new FileReader(pathWithMovieData);
+        BufferedReader br = new BufferedReader(fr);
+        String readAllLines = "";
+
+            for (;;){
+                String readLines = br.readLine();
+
+                if (readLines.equals("END")){
+                    if (readAllLines.isEmpty()){
+                        throw new IllegalArgumentException("Source contains no movie data.");
+                    } return true;
+                }
+                readAllLines = readAllLines + readLines;
+            }
+    }
+
+
+    public void readFile() throws IOException {
+
+        if (syntaxCheck()){
             FileReader fr = new FileReader(pathWithMovieData);
             BufferedReader br = new BufferedReader(fr);
             for (;;){
@@ -39,18 +100,10 @@ public class DummyMovieListGenerator {
                 }
                 readData.add(readLine);
             }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-        return readData;
     }
 
-    /**
-     * @param readData = List of Strings from @readFile method.
-     * @return List of Strings wich contains all genres of the following movie.
-     */
-    public static List<String> generateGenreListForMovie(List<String> readData){
+    private List<String> generateGenreListForMovie(){
         List<String> genreOfThisMovie = new ArrayList<>();
 
         for (int line = 2; line < readData.size(); line ++) {
@@ -62,36 +115,39 @@ public class DummyMovieListGenerator {
         return genreOfThisMovie;
     }
 
-    /**
-     * @param readData is the list from @readFile  method.
-     * create an Object Movie with the readData data. Removes the used lines with the following blank line from txt.
-     * @return generated Movie with the data.
-     */
-    public static Movie generateMovie(List<String> readData){
+    private void generateMovie(){
         Movie movie;
 
-        List<String> genreOfTheMovie = generateGenreListForMovie(readData);
+        List<String> genreOfTheMovie = generateGenreListForMovie();
 
         movie = new Movie(readData.get(0), readData.get(1),
                 genreOfTheMovie);
 
-
-        return movie;
+        generatedMovieList.add(movie);
     }
 
-    public static List<String> lineRemover(List<String> readData){
+    private void lineRemover() {
         int lineCounter = 0;
-        for (int l = lineCounter; l < readData.size()+1 ; l ++){
-            if (!readData.get(l).equals("")){
+        for (int l = lineCounter; l < readData.size() + 1; l++) {
+            if (!readData.get(l).equals("")) {
                 lineCounter++;
             } else {
                 lineCounter++;
-                for ( int r = 0 ; r < lineCounter ; r ++){
+                for (int r = 0; r < lineCounter; r++) {
                     readData.remove(0);
                 }
                 break;
             }
         }
+    }
+
+    public List<Movie> getGeneratedMovieList() throws IOException {
+        execute();
+        return generatedMovieList;
+    }
+
+    public List<String> getReadData() {
         return readData;
     }
+
 }

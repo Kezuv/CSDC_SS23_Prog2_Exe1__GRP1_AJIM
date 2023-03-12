@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,7 +35,15 @@ public class HomeController implements Initializable {
     @FXML
     public JFXButton sortBtn;
 
-    public List<Movie> allMovies = Movie.initializeMovies();
+    public List<Movie> allMovies;
+
+    {
+        try {
+            allMovies = Movie.initializeMovies();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
 
