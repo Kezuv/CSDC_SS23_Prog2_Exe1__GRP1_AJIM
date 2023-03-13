@@ -3,7 +3,6 @@ package at.ac.fhcampuswien.fhmdb.utilities;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 
 public class Filters {
-
     public static String cleanString (String stringToFilter){
         char[] arrayToClean = stringToFilter.toLowerCase().toCharArray();
         StringBuilder cleanString = new StringBuilder();
@@ -16,10 +15,7 @@ public class Filters {
         return cleanString.toString();
     }
 
-
-
     public static boolean filterByString(Movie toCheck, String stringToFilter){
-
         if (stringToFilter == ""){
             return true;
         }
@@ -27,7 +23,6 @@ public class Filters {
                 cleanString(toCheck.getDescription()).contains(cleanString(stringToFilter))){
             return true;
         }
-
         return false;
     }
 
@@ -40,7 +35,4 @@ public class Filters {
         }
         return false;
     }
-
-
-
 }

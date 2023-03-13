@@ -3,7 +3,6 @@ package at.ac.fhcampuswien.fhmdb.models;
 import at.ac.fhcampuswien.fhmdb.utilities.Filters;
 
 public class Genre {
-
     private String kindOfGenre;
 
     public Genre(String kindOfGenre) {

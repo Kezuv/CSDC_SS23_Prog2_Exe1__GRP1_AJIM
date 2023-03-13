@@ -9,7 +9,6 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FiltersTests {
-
     // Testing cleanString
     @Test
     void cleanString_removes_special_characters_without_Space() {

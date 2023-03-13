@@ -12,9 +12,6 @@ import java.lang.IllegalArgumentException;
 import java.lang.NullPointerException;
 
 class MovieTests {
-
-
-
     @Test
     void MovieConstructor_when_title_is_empty_IllegalArgumentException_should_be_thrown() {
         // Given
@@ -55,8 +52,6 @@ class MovieTests {
         assertEquals("Genres cannot be empty!", exception.getMessage());
     }
 
-
-
     @Test
     void MovieConstructor_when_title_is_null_NullPointerException_should_be_thrown() {
         // Given
@@ -95,10 +90,6 @@ class MovieTests {
         // Then
         assertEquals("Title, description or genres cannot be null!", exception.getMessage());
     }
-
-
-
-
 
     @Test
     void getGenresToString_with_empty_genreList_returns_empty_String() {

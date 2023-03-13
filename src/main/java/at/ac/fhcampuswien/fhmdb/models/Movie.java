@@ -12,7 +12,6 @@ public class Movie implements Comparable<Movie>{
     private String description;
     private List<Genre> genres = new ArrayList<>();
 
-
     public Movie(String title, String description, List<String> genre) {
         try {
             if (!title.equals("")) {
@@ -25,17 +24,16 @@ public class Movie implements Comparable<Movie>{
             } else {
                 throw new IllegalArgumentException("Description cannot be empty!");
             }
-                if (!genre.isEmpty()) {
-                    for (int i = 0; i < genre.size(); i++) {
-                        this.genres.add(new Genre(genre.get(i)));
-                    }
-                } else {
-                    throw new IllegalArgumentException("Genres cannot be empty!");
+            if (!genre.isEmpty()) {
+                for (int i = 0; i < genre.size(); i++) {
+                    this.genres.add(new Genre(genre.get(i)));
                 }
+            } else {
+                throw new IllegalArgumentException("Genres cannot be empty!");
+            }
         } catch (NullPointerException n){
             throw new NullPointerException("Title, description or genres cannot be null!");
         }
-
     }
 
     public String getTitle() {
@@ -50,10 +48,7 @@ public class Movie implements Comparable<Movie>{
         return genres;
     }
 
-
-
     public static String getGenresToString(List<Genre> genres){
-
         String genresTotal = "";
 
         for (int g = 0 ; g < genres.size() ; g ++){
@@ -67,13 +62,12 @@ public class Movie implements Comparable<Movie>{
     }
 
     public static List<Movie> initializeMovies() throws IOException {
-
         List<Movie> movies = new ArrayList<>();
         DummyMovieListGenerator generator = new DummyMovieListGenerator("src/main/resources/at/ac/fhcampuswien/fhmdb/DummyData/DummyMovies");
         movies.addAll(generator.getGeneratedMovieList());
-
         return movies;
     }
+
     @Override
     public int compareTo(Movie o) {
         return String.CASE_INSENSITIVE_ORDER.compare(this.title, o.getTitle());

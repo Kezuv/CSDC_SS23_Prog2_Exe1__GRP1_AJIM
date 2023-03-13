@@ -22,19 +22,14 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
     @FXML
     public JFXButton searchBtn;
-
     @FXML
     public TextField searchField;
-
     @FXML
     public JFXListView movieListView;
-
     @FXML
     public JFXComboBox genreComboBox;
-
     @FXML
     public JFXButton sortBtn;
-
     public List<Movie> allMovies;
 
     {
@@ -75,7 +70,6 @@ public class HomeController implements Initializable {
             }
             observableMovies.addAll(filteredMovies);
         });
-
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
             if(sortBtn.getText().equals("Sort (asc)")) {
@@ -86,7 +80,5 @@ public class HomeController implements Initializable {
                 observableMovies.sort(Collections.reverseOrder(Movie::compareTo));
             }
         });
-
     }
-
 }

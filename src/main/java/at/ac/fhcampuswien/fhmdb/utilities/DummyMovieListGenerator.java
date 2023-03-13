@@ -9,17 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DummyMovieListGenerator {
-
     private String pathWithMovieData;
     private List<String> readData = new ArrayList<>();
-
-
-
     private List<Movie> generatedMovieList = new ArrayList<>();
 
-
     public DummyMovieListGenerator(String pathWithMovieData) {
-            this.pathWithMovieData = pathWithMovieData;
+        this.pathWithMovieData = pathWithMovieData;
     }
 
     public void execute() throws IOException {
@@ -50,6 +45,7 @@ public class DummyMovieListGenerator {
         }
         return true;
     }
+
     public boolean checkForEnd() throws IOException {
         FileReader fr = new FileReader(pathWithMovieData);
         BufferedReader br = new BufferedReader(fr);
@@ -57,9 +53,8 @@ public class DummyMovieListGenerator {
         try {
             for (;;){
                 String readLines = br.readLine();
-
-                 if (readLines.equals("END")){
-                     return true;
+                if (readLines.equals("END")){
+                    return true;
                     }
             }
         } catch (NullPointerException n){
@@ -74,21 +69,19 @@ public class DummyMovieListGenerator {
         BufferedReader br = new BufferedReader(fr);
         String readAllLines = "";
 
-            for (;;){
-                String readLines = br.readLine();
+        for (;;){
+            String readLines = br.readLine();
 
-                if (readLines.equals("END")){
-                    if (readAllLines.isEmpty()){
-                        throw new IllegalArgumentException("Source contains no movie data.");
-                    } return true;
-                }
-                readAllLines = readAllLines + readLines;
+            if (readLines.equals("END")){
+                if (readAllLines.isEmpty()){
+                    throw new IllegalArgumentException("Source contains no movie data.");
+                } return true;
             }
+            readAllLines = readAllLines + readLines;
+        }
     }
 
-
     public void readFile() throws IOException {
-
         if (syntaxCheck()){
             FileReader fr = new FileReader(pathWithMovieData);
             BufferedReader br = new BufferedReader(fr);
@@ -145,9 +138,4 @@ public class DummyMovieListGenerator {
         execute();
         return generatedMovieList;
     }
-
-    public List<String> getReadData() {
-        return readData;
-    }
-
 }
